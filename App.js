@@ -1,10 +1,62 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React from 'react'
+import { Platform, StatusBar, StyleSheet, View } from 'react-native'
+import { Constants } from 'expo'
+import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import { TabNavigator, StackNavigator } from 'react-navigation'
+import Decks from './components/Decks'
+import NewDeck from './components/NewDeck'
+import { darkGray, white } from './utils/colors'
+
+
+function UdaciStatusBar ({backgroundColor, ...props}) {
+  return (
+    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  )
+}
+
+const Tabs = TabNavigator({
+  Decks: {
+    screen: Decks,
+    navigationOptions: {
+      tabBarLabel: 'Decks',
+      tabBarIcon: ({ tintColor }) => <Ionicons name='ios-list-box' size={30} color={tintColor} />
+    },
+  },
+  NewDeck: {
+    screen: NewDeck,
+    navigationOptions: {
+      tabBarLabel: 'New Deck',
+      tabBarIcon: ({ tintColor }) => <FontAwesome name='plus-square' size={30} color={tintColor} />
+    },
+  }
+}, {
+  navigationOptions: {
+    header: null
+  },
+  tabBarOptions: {
+    activeTintColor: Platform.OS === 'ios' ? darkGray : white,
+    style: {
+      height: 56,
+      backgroundColor: Platform.OS === 'ios' ? white : darkGray,
+      shadowColor: 'rgba(0, 0, 0, 0.24)',
+      shadowOffset: {
+        width: 0,
+        height: 3
+      },
+      shadowRadius: 6,
+      shadowOpacity: 1
+    }
+  }
+})
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{flex: 1}}>
+        <UdaciStatusBar backgroundColor={darkGray} barStyle="light-content" />
+        <Tabs />
       </View>
     );
   }
@@ -13,7 +65,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: white,
     alignItems: 'center',
     justifyContent: 'center',
   },
