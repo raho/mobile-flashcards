@@ -7,23 +7,38 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import Decks from './components/Decks'
+import Deck from './components/Deck'
 import NewDeck from './components/NewDeck'
 import { darkGray, white } from './utils/colors'
 
-// TODO: navigate from Decks to Deck
 // TODO: New Deck (save and check with AsyncStorage...)
 // TODO: use redux + AsyncStorage: https://github.com/rt2zz/redux-persist
-function UdaciStatusBar ({backgroundColor, ...props}) {
-  return (
-    <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
-      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
-    </View>
-  )
-}
+// TODO: continue with Deck screen 
+
+const DecksNavigator = StackNavigator({
+  Decks: {
+    screen: Decks,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: darkGray,
+      }
+    }
+  },
+  Deck: {
+    screen: Deck,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: darkGray,
+      }
+    }
+  }
+})
 
 const Tabs = TabNavigator({
   Decks: {
-    screen: Decks,
+    screen: DecksNavigator,
     navigationOptions: {
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => <Ionicons name='ios-list-box' size={30} color={tintColor} />
@@ -55,7 +70,6 @@ export default class App extends React.Component {
     return (
       <Provider store={store}>
         <View style={{flex: 1}}>
-          <UdaciStatusBar backgroundColor={darkGray} barStyle="light-content" />
           <Tabs />
         </View>
       </Provider>

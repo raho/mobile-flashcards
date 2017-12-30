@@ -1,33 +1,62 @@
 import React from 'react'
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StatusBar, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import { connect } from 'react-redux'
-import { darkGray, gray, lightGray } from '../utils/colors'
+import { darkGray, gray, lightGray, white } from '../utils/colors'
 
-const Decks = ({decks}) => {
+const DeckListItem = ({item, onPress}) => {
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={decks}
-        renderItem={({item}) => 
-          <View style={styles.item}>
-            <Text style={styles.itemTitle}>{item.title}</Text>
-            <Text style={styles.itemSubtitle}>{item.questions.length + (item.questions.length === 1 ? ' card' : ' cards')}</Text>
-          </View>
-        }
-        ItemSeparatorComponent={ () => <View style={ { height: 1, backgroundColor: lightGray } } /> }
-        keyExtractor={(deck, index) => deck.title}
-      />
-    </View>
+      <TouchableHighlight 
+        onPress={onPress}
+        underlayColor={lightGray}
+      >
+        <View style={styles.item}>
+          <Text style={styles.itemTitle}>{item.title}</Text>
+          <Text style={styles.itemSubtitle}>{item.questions.length + (item.questions.length === 1 ? ' card' : ' cards')}</Text> 
+        </View>
+      </TouchableHighlight>
   )
+}
+
+class Decks extends React.Component {
+  static navigationOptions = {
+    title: 'Decks',
+  };
+  render() {
+    const {decks, navigation} = this.props
+    return (
+      <View style={styles.container}>
+        <FlatList
+          data={decks}
+          renderItem={({item}) => (
+            <DeckListItem 
+              item={item}
+              onPress={() => navigation.navigate(
+                'Deck',
+                { deck: item }
+              )}
+            />
+          )}
+          ItemSeparatorComponent={ () => <View style={ { height: 1, backgroundColor: lightGray } } /> }
+          keyExtractor={(deck, index) => deck.title}
+        />
+      </View>
+    )
+  }
+  
 }
 
 const styles = StyleSheet.create({
   container: {
    flex: 1,
+   backgroundColor: white
   },
   item: {
     height: 80,
     padding: 15
+  },
+  highlight: {
+    height: 80,
+    backgroundColor: lightGray
   },
   itemTitle: {
     fontSize: 20,
