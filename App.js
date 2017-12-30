@@ -3,11 +3,16 @@ import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import { Constants } from 'expo'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
 import { TabNavigator, StackNavigator } from 'react-navigation'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
 import Decks from './components/Decks'
 import NewDeck from './components/NewDeck'
 import { darkGray, white } from './utils/colors'
 
-
+// TODO: navigate from Decks to Deck
+// TODO: New Deck (save and check with AsyncStorage...)
+// TODO: use redux + AsyncStorage: https://github.com/rt2zz/redux-persist
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
     <View style={{ backgroundColor, height: Constants.statusBarHeight }}>
@@ -38,26 +43,22 @@ const Tabs = TabNavigator({
   tabBarOptions: {
     activeTintColor: Platform.OS === 'ios' ? darkGray : white,
     style: {
-      height: 56,
       backgroundColor: Platform.OS === 'ios' ? white : darkGray,
-      shadowColor: 'rgba(0, 0, 0, 0.24)',
-      shadowOffset: {
-        width: 0,
-        height: 3
-      },
-      shadowRadius: 6,
-      shadowOpacity: 1
     }
   }
 })
 
+const store = createStore(reducer)
+
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <UdaciStatusBar backgroundColor={darkGray} barStyle="light-content" />
-        <Tabs />
-      </View>
+      <Provider store={store}>
+        <View style={{flex: 1}}>
+          <UdaciStatusBar backgroundColor={darkGray} barStyle="light-content" />
+          <Tabs />
+        </View>
+      </Provider>
     );
   }
 }
