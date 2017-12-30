@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { darkGray, gray, lightGray } from '../utils/colors'
 
 const Decks = ({decks}) => {
-  console.log(JSON.stringify(decks))
   return (
     <View style={styles.container}>
       <FlatList
@@ -25,7 +24,6 @@ const Decks = ({decks}) => {
 const styles = StyleSheet.create({
   container: {
    flex: 1,
-  //  paddingTop: 22
   },
   item: {
     height: 80,
