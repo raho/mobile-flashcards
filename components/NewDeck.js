@@ -3,26 +3,26 @@ import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
 import UdaciStatusBar from './UdaciStatusBar'
 import { darkGray, gray, white, lightGray } from '../utils/colors'
-import { addDeck } from '../actions'
+import { saveDeckTitle } from '../actions'
 
 class NewDeck extends React.Component {
   state = {
     text: ''    
   }
-  
+
   submit() {
-    const newDeckName = this.state.text.trim()
+    const newDeckTitle = this.state.text.trim()
     
-    const deckAlreadyExists = this.props.decks.some(deck => deck.title.toLowerCase() === newDeckName.toLowerCase()) 
+    const deckAlreadyExists = this.props.decks.some(deck => deck.title.toLowerCase() === newDeckTitle.toLowerCase()) 
 
     if (deckAlreadyExists) {
       Alert.alert(
         'Cannot add new deck',
-        `Deck with name ${newDeckName} already exists!`,
+        `Deck with title "${newDeckTitle}" already exists!`,
         { cancelable: false }
       )
     } else {
-      this.props.addDeck(newDeckName)
+      this.props.saveDeckTitle(newDeckTitle)
       this.setState({text: ''})
     }
   }
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   }
 })
 
-function mapStateToProps (decks) {
+function mapStateToProps ({decks}) {
   return {
     decks
   }
@@ -82,5 +82,5 @@ function mapStateToProps (decks) {
 
 export default connect(
   mapStateToProps,
-  { addDeck }
+  { saveDeckTitle }
 )(NewDeck)
