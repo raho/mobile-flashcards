@@ -1,7 +1,8 @@
 import React from 'react'
-import { Alert, Button, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, StyleSheet, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
 import UdaciStatusBar from './UdaciStatusBar'
+import Button from './Button'
 import { darkGray, gray, white, lightGray } from '../utils/colors'
 import { saveDeckTitle } from '../actions'
 
@@ -43,13 +44,10 @@ class NewDeck extends React.Component {
             onChangeText={(text) => this.setState({text})}
             value={this.state.text}
           />
-          <View style={ { height: 1, backgroundColor: lightGray, marginBottom: 20 } }/>
           <Button
             onPress={() => this.submit()}
             title="SUBMIT"
-            color={darkGray}
             disabled={this.state.text.trim() === ''}
-            accessibilityLabel="Submit new deck"
           />
         </View>
       </View>
