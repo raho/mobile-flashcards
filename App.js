@@ -11,9 +11,13 @@ import Deck from './components/Deck'
 import NewDeck from './components/NewDeck'
 import { darkGray, white } from './utils/colors'
 
-// TODO: New Deck (save and check with AsyncStorage...)
 // TODO: use redux + AsyncStorage: https://github.com/rt2zz/redux-persist
+// TODO: navigate to the newly created deck
 // TODO: continue with Deck screen 
+// TODO: new question screen
+// TODO: quiz
+// TODO: local notification
+// TODO: README
 
 const DecksNavigator = StackNavigator({
   Decks: {

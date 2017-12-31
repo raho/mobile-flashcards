@@ -1,8 +1,8 @@
 export const ADD_DECK = 'ADD_DECK'
 
-export function addDeck (deck) {
+export function addDeck (title) {
   return {
     type: ADD_DECK,
-    deck,
+    title,
   }
 }
