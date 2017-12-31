@@ -25,7 +25,6 @@ const persistedReducer = persistReducer(config, reducer)
 const store = createStore(persistedReducer)
 const persistor = persistStore(store)
 
-// TODO: navigate to the newly created deck
 // TODO: continue with Deck screen 
 // TODO: new question screen
 // TODO: quiz

@@ -32,7 +32,7 @@ class Decks extends React.Component {
               item={item}
               onPress={() => navigation.navigate(
                 'Deck',
-                { deck: item }
+                { title: item.title }
               )}
             />
           )}

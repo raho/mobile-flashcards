@@ -22,8 +22,12 @@ class NewDeck extends React.Component {
         { cancelable: false }
       )
     } else {
-      this.props.saveDeckTitle(newDeckTitle)
       this.setState({text: ''})
+      this.props.saveDeckTitle(newDeckTitle)
+      this.props.navigation.navigate(
+        'Deck',
+        { title: newDeckTitle }
+      )
     }
   }
 
