@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, Keyboard, StyleSheet, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
 import UdaciStatusBar from './UdaciStatusBar'
 import Button from './Button'
@@ -23,6 +23,7 @@ class NewDeck extends React.Component {
         { cancelable: false }
       )
     } else {
+      Keyboard.dismiss()
       this.setState({text: ''})
       this.props.saveDeckTitle(newDeckTitle)
       this.props.navigation.navigate(

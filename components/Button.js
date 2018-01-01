@@ -4,7 +4,7 @@ import { white, darkGray } from '../utils/colors'
 
 export default function TextButton ({ title, onPress, disabled = false, textStyle = {}, backgroundStyle = {} }) {
   return (
-    <View style={disabled ? {opacity: 0.2} : {opacity: 1}}>
+    <View style={disabled ? {opacity: 0.3} : {opacity: 1}}>
       <TouchableOpacity
         style={[Platform.OS === 'ios' ? styles.iosButton : styles.AndroidButton, backgroundStyle]}
         onPress={onPress}

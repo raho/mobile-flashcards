@@ -1,5 +1,5 @@
 import React from 'react'
-import { Alert, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, Keyboard, StyleSheet, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
 import Button from './Button'
 import { darkGray, gray, white, lightGray } from '../utils/colors'
@@ -16,7 +16,8 @@ class NewCard extends React.Component {
 
   submit() {
     const {deck} = this.props
-    const {question, answer} = this.state
+    const question = this.state.question.trim()
+    const answer = this.state.answer.trim()
     
     const questionAlreadyInDeck = deck.questions.some(q => q.question.toLowerCase() === question.toLowerCase()) 
 
@@ -27,6 +28,7 @@ class NewCard extends React.Component {
         { cancelable: false }
       )
     } else {
+      Keyboard.dismiss()
       this.setState({question: '', answer: ''})
       this.props.addCardToDeck(deck.title, {question, answer})
       this.props.navigation.goBack()
@@ -40,19 +42,19 @@ class NewCard extends React.Component {
           <TextInput
             style={styles.input}
             placeholder="Question"
-            onChangeText={(text) => this.setState({question: text.trim()})}
+            onChangeText={(text) => this.setState({question: text})}
             value={this.state.question}
           />
           <TextInput
             style={styles.input}
             placeholder="Answer"
-            onChangeText={(text) => this.setState({answer: text.trim()})}
+            onChangeText={(text) => this.setState({answer: text})}
             value={this.state.answer}
           />
           <Button
             onPress={() => this.submit()}
             title="SUBMIT"
-            disabled={this.state.question === '' || this.state.answer === ''}
+            disabled={this.state.question.trim() === '' || this.state.answer.trim() === ''}
           />
         </View>
       </View>
