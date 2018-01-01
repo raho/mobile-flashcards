@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
-import { darkGray, gray, lightGray, white, green } from '../utils/colors'
+import { darkGray, gray, lightGray, white, teal } from '../utils/colors'
 import Button from './Button'
 
 class Deck extends React.Component {
@@ -32,7 +32,7 @@ class Deck extends React.Component {
         <Button
           onPress={() => this.startQuiz()}
           title="Start Quiz"
-          backgroundStyle={{backgroundColor: green}}
+          backgroundStyle={{backgroundColor: teal}}
           disabled={deck.questions.length === 0}
         />
       </View>

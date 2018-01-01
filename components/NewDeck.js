@@ -3,7 +3,7 @@ import { Alert, Keyboard, StyleSheet, Text, TextInput, View } from 'react-native
 import SafeAreaView from 'react-native-safe-area-view'
 import { connect } from 'react-redux'
 import Button from './Button'
-import { darkGray, gray, white, lightGray, green } from '../utils/colors'
+import { darkGray, gray, white, lightGray, teal } from '../utils/colors'
 import { saveDeckTitle } from '../actions'
 
 class NewDeck extends React.Component {
@@ -47,7 +47,7 @@ class NewDeck extends React.Component {
         <Button
           onPress={() => this.submit()}
           title="SUBMIT"
-          backgroundStyle={{backgroundColor: green}}
+          backgroundStyle={{backgroundColor: teal}}
           disabled={this.state.text.trim() === ''}
         />
         <Button

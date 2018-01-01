@@ -7,7 +7,7 @@ import Decks from './components/Decks'
 import Deck from './components/Deck'
 import NewDeck from './components/NewDeck'
 import NewCard from './components/NewCard'
-import { darkGray, white } from './utils/colors'
+import { darkGray, white, lightTeal } from './utils/colors'
 
 import { createStore } from 'redux'
 import { persistStore, persistReducer } from 'redux-persist'
@@ -37,7 +37,7 @@ const DecksNavigator = StackNavigator(
   }, 
   {
     navigationOptions: {
-      headerTintColor: white,
+      headerTintColor: lightTeal,
       headerStyle: {
         backgroundColor: darkGray,
       }
