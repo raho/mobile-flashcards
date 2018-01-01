@@ -1,8 +1,9 @@
 import React from 'react'
 import { Alert, Keyboard, StyleSheet, Text, TextInput, View } from 'react-native'
+import SafeAreaView from 'react-native-safe-area-view'
 import { connect } from 'react-redux'
 import Button from './Button'
-import { darkGray, gray, white, lightGray } from '../utils/colors'
+import { darkGray, gray, white, lightGray, green } from '../utils/colors'
 import { saveDeckTitle } from '../actions'
 
 class NewDeck extends React.Component {
@@ -35,7 +36,7 @@ class NewDeck extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <Text style={styles.title}>What is the title of your new deck?</Text>
         <TextInput
           style={styles.input}
@@ -46,9 +47,15 @@ class NewDeck extends React.Component {
         <Button
           onPress={() => this.submit()}
           title="SUBMIT"
+          backgroundStyle={{backgroundColor: green}}
           disabled={this.state.text.trim() === ''}
         />
-      </View>
+        <Button
+          onPress={() => this.props.navigation.goBack()}
+          title="CANCEL"
+          backgroundStyle={{backgroundColor: gray}}
+        />
+      </SafeAreaView>
     )
   }
 }

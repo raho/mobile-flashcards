@@ -1,8 +1,9 @@
 import React from 'react'
 import { Alert, Keyboard, StyleSheet, Text, TextInput, View } from 'react-native'
+import SafeAreaView from 'react-native-safe-area-view'
 import { connect } from 'react-redux'
 import Button from './Button'
-import { darkGray, gray, white, lightGray } from '../utils/colors'
+import { darkGray, gray, white, lightGray, green } from '../utils/colors'
 import { addCardToDeck } from '../actions'
 
 class NewCard extends React.Component {
@@ -37,7 +38,8 @@ class NewCard extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.title}>What question would you like to add?</Text>
         <TextInput
           style={styles.input}
           placeholder="Question"
@@ -53,17 +55,29 @@ class NewCard extends React.Component {
         <Button
           onPress={() => this.submit()}
           title="SUBMIT"
+          backgroundStyle={{backgroundColor: green}}
           disabled={this.state.question.trim() === '' || this.state.answer.trim() === ''}
         />
-      </View>
+        <Button
+          onPress={() => this.props.navigation.goBack()}
+          title="CANCEL"
+          backgroundStyle={{backgroundColor: gray}}
+        />
+      </SafeAreaView>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-   flex: 1,
-   backgroundColor: white,
+    flex: 1,
+    backgroundColor: white,
+  },
+  title: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: darkGray,
+    padding: 20
   },
   input: {
     paddingLeft: 5,

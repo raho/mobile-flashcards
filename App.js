@@ -34,8 +34,6 @@ const DecksNavigator = StackNavigator(
   {
     Decks: { screen: Decks },
     Deck: { screen: Deck },
-    NewDeck: { screen: NewDeck },
-    NewCard: { screen: NewCard }
   }, 
   {
     navigationOptions: {
@@ -46,6 +44,19 @@ const DecksNavigator = StackNavigator(
     } 
   }
 )
+const ModalsNavigator = StackNavigator(
+  {
+    DecksNavigator: { screen: DecksNavigator },
+    NewDeck: { screen: NewDeck },
+    NewCard: { screen: NewCard }
+  },
+  {
+    mode: 'modal',
+    navigationOptions: {
+      header: null
+    },
+  }
+)
 
 export default class App extends React.Component {
   render() {
@@ -54,7 +65,7 @@ export default class App extends React.Component {
         <PersistGate persistor={persistor}>
           <View style={{flex: 1}}>
             <StatusBar translucent barStyle="light-content" backgroundColor={darkGray} />
-            <DecksNavigator />
+            <ModalsNavigator />
           </View>
         </PersistGate>
       </Provider>
