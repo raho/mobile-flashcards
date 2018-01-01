@@ -18,6 +18,8 @@ import { PersistGate } from 'redux-persist/es/integration/react'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 
+import { setLocalNotification } from './utils/notifications'
+
 // configure redux
 const config = {
   key: 'root',
@@ -81,6 +83,9 @@ const ModalsNavigator = StackNavigator(
 )
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <Provider store={store}>

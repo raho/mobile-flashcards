@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { darkGray, gray, lightGray, white, lightTeal, teal, red } from '../utils/colors'
 import RoundButton from './Button'
 import SafeAreaView from 'react-native-safe-area-view'
+import { clearLocalNotification, setLocalNotification } from '../utils/notifications'
 
 class QuizScore extends React.Component {
   static navigationOptions = {
@@ -11,7 +12,8 @@ class QuizScore extends React.Component {
   }
 
   componentDidMount() {
-    // TODO: save the score
+    clearLocalNotification()
+    .then(setLocalNotification)
   }
 
   render() {
