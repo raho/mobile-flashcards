@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { darkGray, gray, lightGray, white, teal } from '../utils/colors'
 import Button from './Button'
+import { NavigationActions } from 'react-navigation'
 
 class Deck extends React.Component {
   static navigationOptions = ({ navigation }) => ({

@@ -8,6 +8,7 @@ import Deck from './components/Deck'
 import NewDeck from './components/NewDeck'
 import NewCard from './components/NewCard'
 import Quiz from './components/Quiz'
+import QuizScore from './components/QuizScore'
 import { darkGray, white, lightTeal } from './utils/colors'
 
 import { createStore } from 'redux'
@@ -27,7 +28,7 @@ const persistedReducer = persistReducer(config, reducer)
 const store = createStore(persistedReducer)
 const persistor = persistStore(store)
 
-// TODO: quiz
+// TODO: storing quiz result for local notification
 // TODO: local notification
 // TODO: README
 
@@ -48,7 +49,8 @@ const DecksNavigator = StackNavigator(
 
 const QuizNavigator = StackNavigator(
   {
-    Quiz: { screen: Quiz }
+    Quiz: { screen: Quiz },
+    QuizScore: { screen: QuizScore }
   },
   {
     navigationOptions: {
@@ -66,7 +68,9 @@ const ModalsNavigator = StackNavigator(
     DecksNavigator: { screen: DecksNavigator },
     NewDeck: { screen: NewDeck },
     NewCard: { screen: NewCard },
-    QuizNavigator: { screen: ({ navigation }) => <QuizNavigator screenProps={{ rootNavigation: navigation }} /> }
+    QuizNavigator: { screen: ({ navigation }) => 
+      <QuizNavigator screenProps={{ rootNavigation: navigation, deckTitle: navigation.state.params.deckTitle }} /> 
+    }
   },
   {
     mode: 'modal',
