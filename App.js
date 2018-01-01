@@ -30,10 +30,6 @@ const persistedReducer = persistReducer(config, reducer)
 const store = createStore(persistedReducer)
 const persistor = persistStore(store)
 
-// TODO: storing quiz result for local notification
-// TODO: local notification
-// TODO: README
-
 const DecksNavigator = StackNavigator(
   {
     Decks: { screen: Decks },
