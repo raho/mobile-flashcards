@@ -7,6 +7,7 @@ import Decks from './components/Decks'
 import Deck from './components/Deck'
 import NewDeck from './components/NewDeck'
 import NewCard from './components/NewCard'
+import Quiz from './components/Quiz'
 import { darkGray, white, lightTeal } from './utils/colors'
 
 import { createStore } from 'redux'
@@ -44,11 +45,28 @@ const DecksNavigator = StackNavigator(
     } 
   }
 )
+
+const QuizNavigator = StackNavigator(
+  {
+    Quiz: { screen: Quiz }
+  },
+  {
+    navigationOptions: {
+      headerTintColor: lightTeal,
+      headerBackTitle: null,
+      headerStyle: {
+        backgroundColor: darkGray,
+      }
+    } 
+  } 
+)
+
 const ModalsNavigator = StackNavigator(
   {
     DecksNavigator: { screen: DecksNavigator },
     NewDeck: { screen: NewDeck },
-    NewCard: { screen: NewCard }
+    NewCard: { screen: NewCard },
+    QuizNavigator: { screen: ({ navigation }) => <QuizNavigator screenProps={{ rootNavigation: navigation }} /> }
   },
   {
     mode: 'modal',

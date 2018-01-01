@@ -15,7 +15,10 @@ class Deck extends React.Component {
     )
   }
   startQuiz() {
-    console.log('start quiz', this.props.deck)
+    this.props.navigation.navigate(
+      'QuizNavigator',
+      { deckTitle: this.props.deck.title }
+    )
   }
   render() {
     const {deck} = this.props
