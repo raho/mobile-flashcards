@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, StatusBar, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { Button, FlatList, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import { connect } from 'react-redux'
 import { darkGray, gray, lightGray, white } from '../utils/colors'
 
@@ -18,9 +18,12 @@ const DeckListItem = ({item, onPress}) => {
 }
 
 class Decks extends React.Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     title: 'Decks',
-  };
+    headerRight: (
+      <Button title="Add" color={white} onPress={() => navigation.navigate('NewDeck')} />
+    )
+  })
   render() {
     const {decks, navigation} = this.props
     return (

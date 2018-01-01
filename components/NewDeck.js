@@ -1,7 +1,6 @@
 import React from 'react'
 import { Alert, Keyboard, StyleSheet, Text, TextInput, View } from 'react-native'
 import { connect } from 'react-redux'
-import UdaciStatusBar from './UdaciStatusBar'
 import Button from './Button'
 import { darkGray, gray, white, lightGray } from '../utils/colors'
 import { saveDeckTitle } from '../actions'
@@ -26,6 +25,7 @@ class NewDeck extends React.Component {
       Keyboard.dismiss()
       this.setState({text: ''})
       this.props.saveDeckTitle(newDeckTitle)
+      this.props.navigation.goBack()
       this.props.navigation.navigate(
         'Deck',
         { title: newDeckTitle }
@@ -35,22 +35,19 @@ class NewDeck extends React.Component {
 
   render() {
     return (
-      <View>
-        <UdaciStatusBar backgroundColor={darkGray} barStyle="light-content" />
-        <View style={styles.container}>
-          <Text style={styles.title}>What is the title of your new deck?</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Deck Title"
-            onChangeText={(text) => this.setState({text})}
-            value={this.state.text}
-          />
-          <Button
-            onPress={() => this.submit()}
-            title="SUBMIT"
-            disabled={this.state.text.trim() === ''}
-          />
-        </View>
+      <View style={styles.container}>
+        <Text style={styles.title}>What is the title of your new deck?</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Deck Title"
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.text}
+        />
+        <Button
+          onPress={() => this.submit()}
+          title="SUBMIT"
+          disabled={this.state.text.trim() === ''}
+        />
       </View>
     )
   }

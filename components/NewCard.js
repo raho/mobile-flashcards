@@ -37,26 +37,24 @@ class NewCard extends React.Component {
 
   render() {
     return (
-      <View>
-        <View style={styles.container}>
-          <TextInput
-            style={styles.input}
-            placeholder="Question"
-            onChangeText={(text) => this.setState({question: text})}
-            value={this.state.question}
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Answer"
-            onChangeText={(text) => this.setState({answer: text})}
-            value={this.state.answer}
-          />
-          <Button
-            onPress={() => this.submit()}
-            title="SUBMIT"
-            disabled={this.state.question.trim() === '' || this.state.answer.trim() === ''}
-          />
-        </View>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Question"
+          onChangeText={(text) => this.setState({question: text})}
+          value={this.state.question}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Answer"
+          onChangeText={(text) => this.setState({answer: text})}
+          value={this.state.answer}
+        />
+        <Button
+          onPress={() => this.submit()}
+          title="SUBMIT"
+          disabled={this.state.question.trim() === '' || this.state.answer.trim() === ''}
+        />
       </View>
     )
   }
