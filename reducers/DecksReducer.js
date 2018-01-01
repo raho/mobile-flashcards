@@ -1,4 +1,4 @@
-import { ADD_DECK } from '../actions'
+import { ADD_DECK, ADD_CARD_TO_DECK } from '../actions'
 
 const initialDecks = [
   {
@@ -32,6 +32,13 @@ function decks (state = initialDecks, action) {
         ...state,
         {title: action.title, questions: []}
       ]
+    case ADD_CARD_TO_DECK :
+      const decks = JSON.parse(JSON.stringify(state)); //clone decks
+      const deck = decks.find(deck => deck.title === action.title)
+      if (deck) {
+        deck.questions.push(action.card)
+      }
+      return decks
     default :
       return state
   }

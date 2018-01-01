@@ -9,10 +9,13 @@ class Deck extends React.Component {
     title: `${navigation.state.params.title}`,
   });
   addCard() {
-    console.log('add card')
+    this.props.navigation.navigate(
+      'NewCard',
+      { deckTitle: this.props.deck.title }
+    )
   }
   startQuiz() {
-    console.log('start quiz')
+    console.log('start quiz', this.props.deck)
   }
   render() {
     const {deck} = this.props

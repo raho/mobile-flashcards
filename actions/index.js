@@ -1,4 +1,5 @@
 export const ADD_DECK = 'ADD_DECK'
+export const ADD_CARD_TO_DECK = 'ADD_CARD_TO_DECK'
 
 /**
  * take in a single title argument and add it to the decks. 
@@ -29,5 +30,9 @@ export const getDeck = (id) => {
  * take in two arguments, title and card, and will add the card to the list of questions for the deck with the associated title. 
  */
 export const addCardToDeck = (title, card) => {
-
+  return {
+    type: ADD_CARD_TO_DECK,
+    title,
+    card
+  }
 }

@@ -6,6 +6,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import Decks from './components/Decks'
 import Deck from './components/Deck'
 import NewDeck from './components/NewDeck'
+import NewCard from './components/NewCard'
 import { darkGray, white } from './utils/colors'
 
 import { createStore } from 'redux'
@@ -25,8 +26,6 @@ const persistedReducer = persistReducer(config, reducer)
 const store = createStore(persistedReducer)
 const persistor = persistStore(store)
 
-// TODO: continue with Deck screen 
-// TODO: new question screen
 // TODO: quiz
 // TODO: local notification
 // TODO: README
@@ -49,6 +48,15 @@ const DecksNavigator = StackNavigator({
         backgroundColor: darkGray,
       }
     }
+  },
+  NewCard: {
+    screen: NewCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: darkGray,
+      }
+    } 
   }
 })
 
